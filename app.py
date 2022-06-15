@@ -31,8 +31,9 @@ def predict():
 # API endpoint
 @app.route('/predict_api/')
 def predict():
-    api_load_fd = open("model.pkl", "rb")  # open the file for reading
-    api_model = pickle.load(api_load_fd)  # load the object from the file into new_model
+    load_fd = open("model.pkl", "rb")  # open the file for reading
+    model = pickle.load(load_fd)  # load the object from the file into new_model
+    
     pregnancies = request.args.get('pregnancies')
     glucose = request.args.get('glucose')
     blood_press = request.args.get('blood_press')
@@ -49,8 +50,8 @@ def predict():
         }
     )
 
-    api_prediction = api_model.predict(api_data_frame)[0]
-    if api_prediction == 0:
+    prediction = model.predict(api_data_frame)[0]
+    if prediction == 0:
         outcome = 'No diabetes'
     else:
         outcome = 'Diabetes'
