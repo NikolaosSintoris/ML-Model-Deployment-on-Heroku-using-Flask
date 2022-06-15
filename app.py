@@ -29,7 +29,7 @@ def predict():
     return render_template('index.html', prediction_text = 'The predicted diagnosis is: {}'.format(outcome))
 
 # API endpoint
-@app.route('/predict_api')
+@app.route('/predict_api/')
 def predict():
     api_load_fd = open("model.pkl", "rb")  # open the file for reading
     api_model = pickle.load(api_load_fd)  # load the object from the file into new_model
